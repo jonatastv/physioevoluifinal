@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{template}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <script language="JavaScript">
+        </script>
+    </head>
+
+    <body>
+        <section layout:fragment="content">
+
+            <!--formulário-->
+            <form class="form-horizontal" method="post" th:action="@{/relatorio}" th:object="${relatorio}"  name="dados">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Relatório de pedidos</h3>
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div class="form-group">
+                            <label for="descricao" class="col-sm-2 control-label">Data inicial</label>
+                            <div class="col-sm-2">
+                                <input type="date" th:field="*{dataInicial}" class="form-control" id="descricao" name="descricao"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descricao" class="col-sm-2 control-label">Data final</label>
+                            <div class="col-sm-2">
+                                <input type="date" th:field="*{dataFinal}" class="form-control" id="descricao" name="descricao"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descricao" class="col-sm-2 control-label">Seleciona unidade</label>
+                            <div class="col-sm-2">
+                                <select th:field="*{unidade}" id="descricao" class="form-control">
+                                    <option th:each="uni : ${unidades}" th:text="${uni.nome}" th:value="${uni.id}"/>
+                                </select>
+                                <!--<input type="text" th:field="*{unidade}" class="form-control" id="descricao" name="descricao"/>-->
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="status" class="col-sm-2 control-label">Status do pedido</label>
+                            <div class="col-sm-2">
+                                <select th:field="*{status}" id="status" class="form-control">
+                                    <option th:each="st : ${status}" th:value="${st}" th:text="${st}">STATUS</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">Gerar</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </section>
+    </body>
+</html>
